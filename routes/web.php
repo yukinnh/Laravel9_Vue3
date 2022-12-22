@@ -17,7 +17,8 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get("/posts/index", [PostController::class, "index"]);
+Route::get("/posts/index", [PostController::class, "index"])->name('post.index');
+Route::get("/posts/{post}", [PostController::class, "show"])->name('post.show');
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
