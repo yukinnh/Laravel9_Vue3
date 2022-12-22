@@ -26,6 +26,10 @@
                 <h3>本文</h3>
                 <p>{{ post.body }}</p>
             </div>
+            
+            <div>
+                <p>カテゴリー：{{ post.category.name }}</p>
+            </div>
 
             
             <div class="space-x-3">

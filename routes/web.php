@@ -17,13 +17,20 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get("/posts/index", [PostController::class, "index"])->name('post.index');
-Route::get("/posts/create", [PostController::class, "create"])->name('post.create');
-Route::get("/posts/{post}", [PostController::class, "show"])->name('post.show');
-Route::post("/posts", [PostController::class, "store"])->name('post.store');
-Route::get('/posts/{post}/edit', [PostController::class, "edit"])->name('post.edit');
-Route::put('/posts/{post}', [PostController::class, "update"])->name('post.update');
-Route::delete("/posts/{post}", [PostController::class, "delete"])->name('post.delete');
+Route::group([
+    'controller' => PostController::class,
+    'prefix'      => "posts",
+    'as'       => "post."
+    ], function ()
+{
+    Route::get('index', 'index')->name('index');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::get('{post}/edit', 'edit')->name('edit');
+    Route::get('{post}', 'show')->name('show');
+    Route::put('{post}', 'update')->name('update');
+    Route::delete('{post}', 'delete')->name('delete');
+});
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
